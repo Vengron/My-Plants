@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/nav_encyclopedia"
-        android:icon="@drawable/ic_menu_encyclopedia"
-        android:title="@string/encyclopedia" />
+        android:icon="@drawable/ic_menu_collection"
+        android:title="@string/collection" />
     <item
         android:id="@+id/nav_harmonogram"
         android:icon="@drawable/ic_menu_harmonogram"

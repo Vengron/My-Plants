@@ -1,4 +1,4 @@
-package cz.vengron.myplants.encyclopedia
+package cz.vengron.myplants.collection
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,26 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import cz.vengron.myplants.R
-import cz.vengron.myplants.databinding.EncyclopediaFragmentBinding
+import cz.vengron.myplants.databinding.CollectionFragmentBinding
+
 
 /**
  * Collection of added plants displayed by RecyclerView with
  * onClickListener on every item to handle navigation to PlantDetailFragment
  */
 
-class EncyclopediaFragment : Fragment( ){
+class CollectionFragment : Fragment( ){
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: EncyclopediaFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.encyclopedia_fragment, container, false)
-        val manager = GridLayoutManager(activity, 3)
-        binding.plantsList.layoutManager = manager
+        val binding: CollectionFragmentBinding = DataBindingUtil.inflate(
+            inflater, R.layout.collection_fragment, container, false)
         return binding.root
     }
 }

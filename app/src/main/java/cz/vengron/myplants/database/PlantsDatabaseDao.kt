@@ -18,7 +18,7 @@ interface PlantsDatabaseDao {
 
     /**
      * Method used in case of clicking on item in RecyclerView
-     * on EncyclopediaFragment
+     * on CollectionFragment
      * @param [key] is [Plant.plantId]
      */
     @Query("SELECT * FROM plants_table WHERE plantId = :key")
