@@ -5,6 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
+/**
+ * Database class that stores info about saved plants
+ * with method connection to [plantsDatabaseDao] and
+ * method [getInstance] in companion object globally work with only one instance of database.
+ */
+
 @Database(entities = [Plant::class], version = 1, exportSchema = false)
 abstract class PlantsDatabase: RoomDatabase() {
 

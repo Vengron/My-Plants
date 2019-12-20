@@ -10,6 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import cz.vengron.myplants.R
 import cz.vengron.myplants.databinding.EncyclopediaFragmentBinding
 
+/**
+ * Collection of added plants displayed by RecyclerView with
+ * onClickListener on every item to handle navigation to PlantDetailFragment
+ */
+
 class EncyclopediaFragment : Fragment( ){
 
     override fun onCreateView(

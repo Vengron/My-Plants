@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment
 import cz.vengron.myplants.R
 import cz.vengron.myplants.databinding.HarmonogramFragmentBinding
 
+/**
+ * Fragment used for displaying times of watering the added plants
+ */
+
 class HarmonogramFragment : Fragment() {
 
     override fun onCreateView(

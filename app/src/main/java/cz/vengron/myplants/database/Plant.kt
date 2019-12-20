@@ -4,6 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * Table of [PlantsDatabase] which persistently saves info about one plant with help of Room.
+ */
+
 @Entity(tableName = "plants_table")
 data class Plant(
 
@@ -21,5 +25,4 @@ data class Plant(
 
     @ColumnInfo(name = "encyclopedia_info")
     var encyclopediaInfo: String = "encyclopedia info"
-
 )

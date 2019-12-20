@@ -9,6 +9,10 @@ import androidx.fragment.app.Fragment
 import cz.vengron.myplants.R
 import cz.vengron.myplants.databinding.SettingsFragmentBinding
 
+/**
+ * Fragment used for set up global app options
+ */
+
 class SettingsFragment : Fragment() {
 
     override fun onCreateView(
@@ -19,6 +23,6 @@ class SettingsFragment : Fragment() {
         val binding: SettingsFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.settings_fragment, container, false)
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 }
