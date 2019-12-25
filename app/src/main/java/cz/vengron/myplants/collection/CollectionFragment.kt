@@ -6,7 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import cz.vengron.myplants.R
+import cz.vengron.myplants.database.PlantsDatabase
 import cz.vengron.myplants.databinding.CollectionFragmentBinding
 
 
@@ -24,6 +28,27 @@ class CollectionFragment : Fragment( ){
     ): View? {
         val binding: CollectionFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.collection_fragment, container, false)
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = PlantsDatabase.getInstance(application).plantsDatabaseDao
+
+        val viewModelFactory = CollectionViewModelFactory(dataSource, application)
+
+        val collectionViewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(CollectionViewModel::class.java)
+
+        binding.viewModel = collectionViewModel
+
+        binding.lifecycleOwner = this
+
+        collectionViewModel.navigateToPlantAddition.observe(this, Observer {
+            if (it == true) {
+                this.findNavController().navigate(R.id.plantAdditionFragment)
+                collectionViewModel.onNavigatedToAddition()
+            }
+        })
+
         return binding.root
     }
 }
