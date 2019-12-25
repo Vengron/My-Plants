@@ -6,9 +6,9 @@
         android:icon="@drawable/ic_menu_collection"
         android:title="@string/collection" />
     <item
-        android:id="@+id/nav_harmonogram"
-        android:icon="@drawable/ic_menu_harmonogram"
-        android:title="@string/harmonogram" />
+        android:id="@+id/nav_schedule"
+        android:icon="@drawable/ic_menu_schedule"
+        android:title="@string/schedule" />
     <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_menu_settings"

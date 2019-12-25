@@ -12,9 +12,9 @@
         tools:layout="@layout/collection_fragment"/>
     <fragment
         android:id="@+id/nav_harmonogram"
-        android:name="cz.vengron.myplants.harmonogram.HarmonogramFragment"
+        android:name="cz.vengron.myplants.schedule.ScheduleFragment"
         android:label="@string/harmonogram"
-        tools:layout="@layout/harmonogram_fragment"/>
+        tools:layout="@layout/schedule_fragment" />
     <fragment
         android:id="@+id/nav_settings"
         android:name="cz.vengron.myplants.settings.SettingsFragment"
