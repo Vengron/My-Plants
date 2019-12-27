@@ -11,7 +11,7 @@ import androidx.room.RoomDatabase
  * method [getInstance] in companion object globally work with only one instance of database.
  */
 
-@Database(entities = [Plant::class], version = 1, exportSchema = false)
+@Database(entities = [Plant::class], version = 2, exportSchema = false)
 abstract class PlantsDatabase: RoomDatabase() {
 
     abstract val plantsDatabaseDao: PlantsDatabaseDao
