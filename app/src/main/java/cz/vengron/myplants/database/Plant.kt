@@ -23,9 +23,9 @@ data class Plant(
     @ColumnInfo(name = "time_for_watering")
     var timeForWatering: Long = System.currentTimeMillis() + 60000,
 
-    @ColumnInfo(name = "encyclopedia_info")
-    var encyclopediaInfo: String = "collection info",
+    @ColumnInfo(name = "image_url")
+    var imageUrl: String = "imageUrl",
 
-    @ColumnInfo(name = "imageUrl")
-    val imageUrl: String = "url"
+    @ColumnInfo(name = "wiki_url")
+    var wikiUrl: String = "wikiUrl"
 )
