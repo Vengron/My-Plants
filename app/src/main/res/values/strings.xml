@@ -7,4 +7,12 @@
     <string name="plant_name">How do you call your plantie?</string>
     <string name="days_of_watering">How often do you water? (in days)</string>
     <string name="done">Done</string>
+
+    <string-array name="names_of_plants">
+        <item>Plectranthus amboinicus</item>
+        <item>Plectranthus scutellarioides</item>
+        <item>Aloe vera</item>
+        <item>Piper nigrum</item>
+        <item>Spathiphyllum cochlearispathum</item>
+    </string-array>
 </resources>
