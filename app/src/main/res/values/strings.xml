@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">My Plants</string>
-    <string name="settings">Settings</string>
-    <string name="plant_image">Plant Image</string>
     <string name="collection">Collection</string>
     <string name="schedule">Schedule</string>
-    <string name="plant_name">Plant name</string>
-    <string name="data_for_watering">Data for watering</string>
+    <string name="settings">Settings</string>
+    <string name="plant_image">Image of your plant</string>
+    <string name="plant_name">How do you want to call your plantie?</string>
+    <string name="days_of_watering">How often you want water your plant? (in days)</string>
     <string name="done">Done</string>
 </resources>
