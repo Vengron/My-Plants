@@ -17,13 +17,15 @@
 
         <TextView
             android:id="@+id/plant_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            tools:text="peprik"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="peprik" />
 
         <ImageView
             android:id="@+id/plant_image"
@@ -38,32 +40,38 @@
 
         <TextView
             android:id="@+id/name_of_the_plant"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            tools:text="piper"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plant_image" />
+            app:layout_constraintTop_toBottomOf="@+id/plant_image"
+            tools:text="piper" />
 
         <TextView
             android:id="@+id/time_for_watering"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            tools:text="Today"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/name_of_the_plant" />
+            app:layout_constraintTop_toBottomOf="@+id/name_of_the_plant"
+            tools:text="Today" />
 
         <TextView
             android:id="@+id/wiki_info"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            tools:text="Wiki Info"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_for_watering" />
+            app:layout_constraintTop_toBottomOf="@+id/time_for_watering"
+            tools:text="Wiki Info" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
