@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.SpinnerAdapter
 import androidx.databinding.DataBindingUtil
 import cz.vengron.myplants.R
 import cz.vengron.myplants.database.Plant
@@ -15,12 +18,13 @@ import java.util.concurrent.TimeUnit
 
 class PlantAdditionFragment : Fragment() {
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val urlsOfImages = mapOf<String, String>(
+        val urlsOfImages = mapOf(
             Pair(
                 "Plectranthus amboinicus",
                 "https://upload.wikimedia.org/wikipedia/commons/1/1b/Leaf_-pani_koorkka.JPG"
@@ -64,8 +68,19 @@ class PlantAdditionFragment : Fragment() {
             plant.plantName = binding.plantNameEdit.text.toString()
             plant.timeForWatering = System.currentTimeMillis() +
                     TimeUnit.DAYS.toMillis(binding.timeForWateringEdit.text.toString().toLong())
-            plant.nameOfThePlant = binding.nameOfThePlantEdit.selectedItem.toString()
+            val nameOfThePlant = binding.nameOfThePlantEdit.selectedItem.toString()
+            plant.nameOfThePlant = nameOfThePlant
+            plant.wikiUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
             additionViewModel.addNewPlant(plant)
+        }
+
+        ArrayAdapter.createFromResource(
+            this.context!!,
+            R.array.names_of_plants,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.nameOfThePlantEdit.adapter = adapter
         }
 
         return binding.root
