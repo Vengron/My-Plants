@@ -1,9 +1,11 @@
 package cz.vengron.myplants.plantaddition
 
 import androidx.lifecycle.ViewModel
+import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabaseDao
+import kotlinx.coroutines.*
 
-class PlantAdditionViewModel(val dataSource: PlantsDatabaseDao) : ViewModel() {
+class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
 
     enum class NameOfPlants(latinName: String, imageUrl: String) {
         RYMOVNIK(
@@ -26,5 +28,26 @@ class PlantAdditionViewModel(val dataSource: PlantsDatabaseDao) : ViewModel() {
             "Spathiphyllum",
             "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Spathiphyllum_cochlearispathum_RTBG.jpg/800px-Spathiphyllum_cochlearispathum_RTBG.jpg"
         )
+    }
+
+    private var viewModelJob = Job()
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+
+    fun addNewPlant(plant: Plant) {
+        uiScope.launch {
+            insert(plant)
+        }
+    }
+
+    private suspend fun insert(plant: Plant) {
+        withContext(Dispatchers.IO) {
+            database.insert(plant)
+        }
     }
 }
