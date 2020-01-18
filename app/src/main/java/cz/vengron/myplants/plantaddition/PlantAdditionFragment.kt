@@ -7,16 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.SpinnerAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import cz.vengron.myplants.R
-import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabase
 import cz.vengron.myplants.databinding.PlantAdditionFragmentBinding
-import java.util.concurrent.TimeUnit
 
 class PlantAdditionFragment : Fragment() {
 
@@ -25,29 +21,6 @@ class PlantAdditionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val urlsOfImages = mapOf(
-            Pair(
-                "Plectranthus amboinicus",
-                "https://upload.wikimedia.org/wikipedia/commons/1/1b/Leaf_-pani_koorkka.JPG"
-            ),
-            Pair(
-                "Plectranthus scutellarioides",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Starr_070830-8251_Solenostemon_scutellarioides.jpg/675px-Starr_070830-8251_Solenostemon_scutellarioides.jpg"
-            ),
-            Pair(
-                "Aloe vera",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alo%C3%AB-vera-habitus.jpg/600px-Alo%C3%AB-vera-habitus.jpg"
-            ),
-            Pair(
-                "Piper nigrum",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Piper_longum_plant.jpg/800px-Piper_longum_plant.jpg"
-            ),
-            Pair(
-                "Spathiphyllum cochlearispathum",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Spathiphyllum_cochlearispathum_RTBG.jpg/800px-Spathiphyllum_cochlearispathum_RTBG.jpg"
-            )
-        )
 
         val binding: PlantAdditionFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.plant_addition_fragment, container, false
@@ -66,12 +39,10 @@ class PlantAdditionFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.doneButton.setOnClickListener {
-            val nameOfThePlant = binding.nameOfThePlantEdit.selectedItem.toString()
             additionViewModel.addNewPlant(
                 binding.plantNameEdit.text.toString(),
                 binding.timeForWateringEdit.text.toString().toLong(),
-                nameOfThePlant,
-                urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
+                binding.nameOfThePlantEdit.selectedItem.toString()
             )
         }
 
