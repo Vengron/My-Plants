@@ -66,15 +66,13 @@ class PlantAdditionFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.doneButton.setOnClickListener {
-            val plant = Plant()
-            plant.plantName = binding.plantNameEdit.text.toString()
-            plant.timeForWatering = System.currentTimeMillis() +
-                    TimeUnit.DAYS.toMillis(binding.timeForWateringEdit.text.toString().toLong())
             val nameOfThePlant = binding.nameOfThePlantEdit.selectedItem.toString()
-            plant.nameOfThePlant = nameOfThePlant
-            plant.wikiUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
-            additionViewModel.addNewPlant(plant)
-            additionViewModel.onNavigateToDetail.value = plant
+            additionViewModel.addNewPlant(
+                binding.plantNameEdit.text.toString(),
+                binding.timeForWateringEdit.text.toString().toLong(),
+                nameOfThePlant,
+                urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
+            )
         }
 
         additionViewModel.onNavigateToDetail.observe(this, Observer { plant ->

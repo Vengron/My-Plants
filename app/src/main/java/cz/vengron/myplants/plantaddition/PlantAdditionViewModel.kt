@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabaseDao
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 
 class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
 
@@ -17,10 +18,22 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    fun addNewPlant(plant: Plant) {
+    fun addNewPlant(
+        plantName: String,
+        timeForWatering: Long,
+        nameOfThePlant: String,
+        wikiUrl: String
+    ) {
+        val plant = Plant()
+        plant.plantName = plantName
+        plant.timeForWatering = System.currentTimeMillis() +
+                TimeUnit.DAYS.toMillis(timeForWatering)
+        plant.nameOfThePlant = nameOfThePlant
+        plant.wikiUrl = wikiUrl
         uiScope.launch {
             insert(plant)
         }
+        _onNavigateToDetail.value = plant
     }
 
     private suspend fun insert(plant: Plant) {
