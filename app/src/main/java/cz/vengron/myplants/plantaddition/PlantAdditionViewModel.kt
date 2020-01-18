@@ -1,5 +1,6 @@
 package cz.vengron.myplants.plantaddition
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabaseDao
@@ -26,5 +27,13 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         withContext(Dispatchers.IO) {
             database.insert(plant)
         }
+    }
+
+    private val _onNavigateToDetail = MutableLiveData<Plant>()
+    val onNavigateToDetail: MutableLiveData<Plant>
+        get() = _onNavigateToDetail
+
+    fun onNavigateToDetail() {
+        _onNavigateToDetail.value = null
     }
 }

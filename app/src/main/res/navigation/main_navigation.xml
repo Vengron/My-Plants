@@ -22,10 +22,23 @@
         android:id="@+id/settingsFragment"
         android:name="cz.vengron.myplants.settings.SettingsFragment"
         android:label="SettingsFragment"
-        tools:layout="@layout/settings_fragment"/>
+        tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/plantAdditionFragment"
         android:name="cz.vengron.myplants.plantaddition.PlantAdditionFragment"
         android:label="PlantAdditionFragment"
-        tools:layout="@layout/plant_addition_fragment" />
+        tools:layout="@layout/plant_addition_fragment">
+        <action
+            android:id="@+id/action_plantAdditionFragment_to_plantDetailFragment"
+            app:destination="@id/plantDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/plantDetailFragment"
+        android:name="cz.vengron.myplants.plantdetail.PlantDetailFragment"
+        android:label="PlantDetailFragment"
+        tools:layout="@layout/plant_detail_fragment">
+        <argument
+            android:name="plantKey"
+            app:argType="long" />
+    </fragment>
 </navigation>

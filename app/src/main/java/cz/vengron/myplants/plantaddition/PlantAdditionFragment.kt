@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import cz.vengron.myplants.R
 import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabase
@@ -72,7 +74,19 @@ class PlantAdditionFragment : Fragment() {
             plant.nameOfThePlant = nameOfThePlant
             plant.wikiUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
             additionViewModel.addNewPlant(plant)
+            additionViewModel.onNavigateToDetail.value = plant
         }
+
+        additionViewModel.onNavigateToDetail.observe(this, Observer { plant ->
+            plant?.let {
+                this.findNavController().navigate(
+                    PlantAdditionFragmentDirections
+                        .actionPlantAdditionFragmentToPlantDetailFragment(plant.plantId)
+                )
+                additionViewModel.onNavigateToDetail()
+            }
+
+        })
 
         ArrayAdapter.createFromResource(
             this.context!!,
