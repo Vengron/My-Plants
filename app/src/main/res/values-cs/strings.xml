@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Moje rostliny</string>
+    <string name="collection">Kolekce</string>
+    <string name="days_of_watering">Kolikrát týdně zaléváš?</string>
+    <string name="done">Hotovo</string>
+    <string name="plant_image">Obrázek tvojí rostliny</string>
+    <string name="plant_name">Jak voláš svoji kytičku?</string>
+    <string name="schedule">Rozvrh</string>
+    <string name="settings">Nastavení</string>
+</resources>
