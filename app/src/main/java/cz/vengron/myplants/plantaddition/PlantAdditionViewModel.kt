@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabaseDao
 import kotlinx.coroutines.*
+import java.sql.Time
 import java.util.concurrent.TimeUnit
+import kotlin.math.round
 
 class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
 
@@ -27,7 +29,12 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         val plant = Plant()
         plant.plantName = plantName
         plant.timeForWatering = System.currentTimeMillis() +
-                TimeUnit.DAYS.toMillis(timeForWatering)
+                round(
+                    TimeUnit.DAYS.toMillis(7).toDouble() /
+                            TimeUnit.DAYS.toMillis(timeForWatering)
+                )
+                    .toLong()
+
         plant.nameOfThePlant = nameOfThePlant
         plant.wikiUrl = wikiUrl
         uiScope.launch {
