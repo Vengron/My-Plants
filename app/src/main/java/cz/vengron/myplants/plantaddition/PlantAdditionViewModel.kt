@@ -37,8 +37,16 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         plant.imageUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
         uiScope.launch {
             insert(plant)
+            _onNavigateToDetail.value = getLastPlant()
         }
-        _onNavigateToDetail.value = plant
+    }
+
+    private suspend fun getLastPlant(): Plant? {
+        var lastPlant = Plant()
+        withContext(Dispatchers.IO) {
+            lastPlant = database.getLastPlant()
+        }
+        return lastPlant
     }
 
     private suspend fun insert(plant: Plant) {
