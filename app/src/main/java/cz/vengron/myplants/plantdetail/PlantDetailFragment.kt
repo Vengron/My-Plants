@@ -13,10 +13,12 @@ import cz.vengron.myplants.databinding.PlantDetailFragmentBinding
 
 
 class PlantDetailFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding: PlantDetailFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.plant_detail_fragment, container, false
         )
@@ -25,7 +27,9 @@ class PlantDetailFragment : Fragment() {
 
         val dataSource = PlantsDatabase.getInstance(application).plantsDatabaseDao
 
-        val viewModelProvider = PlantDetailViewModelFactory(dataSource)
+        val arguments = PlantDetailFragmentArgs.fromBundle(arguments!!)
+
+        val viewModelProvider = PlantDetailViewModelFactory(arguments.plantKey, dataSource)
 
         val detailViewModel = ViewModelProviders.of(
             this, viewModelProvider
