@@ -26,13 +26,7 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
     ) {
         val plant = Plant()
         plant.plantName = plantName
-        plant.timeForWatering = System.currentTimeMillis() +
-                round(
-                    TimeUnit.DAYS.toMillis(7).toDouble() /
-                            TimeUnit.DAYS.toMillis(timeForWatering)
-                )
-                    .toLong()
-
+        plant.timeForWatering = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(timeForWatering)
         plant.nameOfThePlant = nameOfThePlant
         plant.imageUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
         uiScope.launch {
