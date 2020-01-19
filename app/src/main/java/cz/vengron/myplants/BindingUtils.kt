@@ -1,9 +1,11 @@
-package cz.vengron.myplants.plantdetail
+package cz.vengron.myplants
 
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
-import cz.vengron.myplants.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import cz.vengron.myplants.database.Plant
 import java.text.SimpleDateFormat
 import java.util.*
@@ -11,9 +13,15 @@ import java.util.*
 @BindingAdapter("plantImage")
 fun ImageView.setPlantImage(plant: Plant?) {
     plant?.let {
-        setImageResource(
-            R.drawable.plant_test
-        )
+        val imgUri = plant.imageUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(context)
+            .load(imgUri)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image)
+            )
+            .into(this)
     }
 }
 
