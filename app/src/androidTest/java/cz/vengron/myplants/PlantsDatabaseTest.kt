@@ -48,6 +48,6 @@ class PlantDatabaseTest {
         val plant = Plant()
         plantDao.insert(plant)
         val oldPlant = plantDao.getLastPlant()
-        assertEquals(oldPlant, null)
+        assertEquals(oldPlant.plantId, 1)
     }
 }
