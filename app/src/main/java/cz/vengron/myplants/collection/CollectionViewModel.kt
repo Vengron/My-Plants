@@ -11,8 +11,6 @@ class CollectionViewModel(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val _navigateToPlantDetail = MutableLiveData<Long>()
-
     private val _navigateToPlantAddition = MutableLiveData<Boolean>()
     val navigateToPlantAddition: LiveData<Boolean>
         get() = _navigateToPlantAddition
@@ -24,4 +22,20 @@ class CollectionViewModel(
     fun onNavigatedToAddition() {
         _navigateToPlantAddition.value = false
     }
+
+    val plants = database.getAllPlants()
+
+    private val _navigateToPlantDetail = MutableLiveData<Long>()
+
+    val navigateToPlantDetail: LiveData<Long>
+        get() = _navigateToPlantDetail
+
+    fun onPlantClicked(plantId: Long) {
+        _navigateToPlantDetail.value = plantId
+    }
+
+    fun onNavigatedToDetail() {
+        _navigateToPlantDetail.value = null
+    }
+
 }

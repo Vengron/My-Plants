@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import cz.vengron.myplants.R
 import cz.vengron.myplants.database.PlantsDatabase
 import cz.vengron.myplants.databinding.CollectionFragmentBinding
@@ -19,7 +20,7 @@ import cz.vengron.myplants.databinding.CollectionFragmentBinding
  * onClickListener on every item to handle navigation to PlantDetailFragment
  */
 
-class CollectionFragment : Fragment( ){
+class CollectionFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +28,8 @@ class CollectionFragment : Fragment( ){
         savedInstanceState: Bundle?
     ): View? {
         val binding: CollectionFragmentBinding = DataBindingUtil.inflate(
-            inflater, R.layout.collection_fragment, container, false)
+            inflater, R.layout.collection_fragment, container, false
+        )
 
         val application = requireNotNull(this.activity).application
 
@@ -46,6 +48,27 @@ class CollectionFragment : Fragment( ){
             if (it == true) {
                 this.findNavController().navigate(R.id.plantAdditionFragment)
                 collectionViewModel.onNavigatedToAddition()
+            }
+        })
+
+        collectionViewModel.navigateToPlantDetail.observe(this, Observer {
+            it?.let {
+                this.findNavController().navigate(
+                    CollectionFragmentDirections.actionCollectionFragmentToPlantDetailFragment(it)
+                )
+                collectionViewModel.onNavigatedToDetail()
+            }
+
+        })
+        val adapter = PlantAdapter(PlantListener { plantId ->
+            collectionViewModel.onPlantClicked(plantId)
+        })
+
+        binding.plantsList.adapter = adapter
+
+        collectionViewModel.plants.observe(this, Observer {
+            it?.let {
+                adapter.submitList(it)
             }
         })
 
