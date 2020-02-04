@@ -8,4 +8,6 @@
     <string name="schedule">Rozvrh</string>
     <string name="settings">Nastavení</string>
     <string name="days_of_watering">V jakém denním intervalu zaleváš?</string>
+    <string name="addition">Přidat rostlinu</string>
+    <string name="detail">Tvoje rostlinka</string>
 </resources>

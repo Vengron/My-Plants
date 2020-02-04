@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/collectionFragment"
         android:name="cz.vengron.myplants.collection.CollectionFragment"
-        android:label="CollectionFragment"
+        android:label="@string/collection"
         tools:layout="@layout/collection_fragment">
         <action
             android:id="@+id/action_collectionFragment_to_plantAdditionFragment"
@@ -23,17 +23,21 @@
     <fragment
         android:id="@+id/scheduleFragment"
         android:name="cz.vengron.myplants.schedule.ScheduleFragment"
-        android:label="ScheduleFragment"
-        tools:layout="@layout/schedule_fragment" />
+        android:label="@string/schedule"
+        tools:layout="@layout/schedule_fragment">
+        <action
+            android:id="@+id/action_scheduleFragment_to_plantDetailFragment"
+            app:destination="@id/plantDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="cz.vengron.myplants.settings.SettingsFragment"
-        android:label="SettingsFragment"
+        android:label="@string/settings"
         tools:layout="@layout/settings_fragment" />
     <fragment
         android:id="@+id/plantAdditionFragment"
         android:name="cz.vengron.myplants.plantaddition.PlantAdditionFragment"
-        android:label="PlantAdditionFragment"
+        android:label="@string/addition"
         tools:layout="@layout/plant_addition_fragment">
         <action
             android:id="@+id/action_plantAdditionFragment_to_plantDetailFragment"
@@ -48,7 +52,7 @@
     <fragment
         android:id="@+id/plantDetailFragment"
         android:name="cz.vengron.myplants.plantdetail.PlantDetailFragment"
-        android:label="PlantDetailFragment"
+        android:label="@string/detail"
         tools:layout="@layout/plant_detail_fragment">
         <argument
             android:name="plantKey"

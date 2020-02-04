@@ -1,18 +1,19 @@
 package cz.vengron.myplants.collection
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import cz.vengron.myplants.R
 import cz.vengron.myplants.database.PlantsDatabase
 import cz.vengron.myplants.databinding.CollectionFragmentBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -37,7 +38,7 @@ class CollectionFragment : Fragment() {
 
         val viewModelFactory = CollectionViewModelFactory(dataSource, application)
 
-        val collectionViewModel = ViewModelProviders.of(this, viewModelFactory)
+        val collectionViewModel = ViewModelProvider(this, viewModelFactory)
             .get(CollectionViewModel::class.java)
 
         binding.viewModel = collectionViewModel
@@ -66,9 +67,15 @@ class CollectionFragment : Fragment() {
 
         binding.plantsList.adapter = adapter
 
+        val scope = CoroutineScope(Dispatchers.Default)
+
         collectionViewModel.plants.observe(this, Observer {
-            it?.let {
-                adapter.submitList(it)
+            scope.launch {
+                withContext(Dispatchers.Main) {
+                    it?.let {
+                        adapter.submitList(it)
+                    }
+                }
             }
         })
 

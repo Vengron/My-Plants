@@ -2,11 +2,16 @@ package cz.vengron.myplants.collection
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import cz.vengron.myplants.R
 import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.databinding.ListItemPlantBinding
+import cz.vengron.myplants.setPlantImage
 
 
 class PlantAdapter(private val clickListener: PlantListener) : ListAdapter<Plant,
@@ -24,7 +29,6 @@ class PlantAdapter(private val clickListener: PlantListener) : ListAdapter<Plant
 
     class ViewHolder private constructor(val binding: ListItemPlantBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
         fun bind(clickListener: PlantListener, item: Plant) {
             binding.plant = item
             binding.clickListener = clickListener
@@ -42,12 +46,6 @@ class PlantAdapter(private val clickListener: PlantListener) : ListAdapter<Plant
     }
 }
 
-/**
- * Callback for calculating the diff between two non-null items in a list.
- *
- * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
- * list that's been passed to `submitList`.
- */
 class PlantDiffCallback : DiffUtil.ItemCallback<Plant>() {
     override fun areItemsTheSame(oldItem: Plant, newItem: Plant): Boolean {
         return oldItem.plantId == newItem.plantId

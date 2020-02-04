@@ -3,6 +3,8 @@
     <string name="collection">Collection</string>
     <string name="schedule">Schedule</string>
     <string name="settings">Settings</string>
+    <string name="addition">Add a plant</string>
+    <string name="detail">Your plantie</string>
     <string name="plant_image">Image of your plant</string>
     <string name="plant_name">How do you call your plantie?</string>
     <string name="done">Done</string>
