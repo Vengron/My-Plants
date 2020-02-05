@@ -23,6 +23,9 @@ data class Plant(
     @ColumnInfo(name = "time_for_watering")
     var timeForWatering: Long = System.currentTimeMillis() + 60000,
 
+    @ColumnInfo(name = "watering_interval")
+    var wateringInterval: Long = 3L,
+
     @ColumnInfo(name = "image_url")
     var imageUrl: String = "imageUrl",
 

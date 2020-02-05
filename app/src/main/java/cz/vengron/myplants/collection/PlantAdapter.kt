@@ -2,16 +2,11 @@ package cz.vengron.myplants.collection
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import cz.vengron.myplants.R
 import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.databinding.ListItemPlantBinding
-import cz.vengron.myplants.setPlantImage
 
 
 class PlantAdapter(private val clickListener: PlantListener) : ListAdapter<Plant,
@@ -29,6 +24,7 @@ class PlantAdapter(private val clickListener: PlantListener) : ListAdapter<Plant
 
     class ViewHolder private constructor(val binding: ListItemPlantBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(clickListener: PlantListener, item: Plant) {
             binding.plant = item
             binding.clickListener = clickListener

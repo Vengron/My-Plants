@@ -34,6 +34,8 @@ class PlantDatabaseTest {
             .allowMainThreadQueries()
             .build()
         plantDao = db.plantsDatabaseDao
+        val plant = Plant()
+        plantDao.insert(plant)
     }
 
     @After
@@ -44,10 +46,18 @@ class PlantDatabaseTest {
 
     @Test
     @Throws(Exception::class)
-    fun insertAndGetPlant() {
-        val plant = Plant()
-        plantDao.insert(plant)
-        val oldPlant = plantDao.getLastPlant()
-        assertEquals(oldPlant.plantId, 1)
+    fun getPlant() {
+        val plant = plantDao.getLastPlant()
+        assertEquals(plant.plantId, 1)
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun updatePlant() {
+        val plant = plantDao.getLastPlant()
+        plant.wateringInterval = 4L
+        plantDao.update(plant)
+        val updatedPlant = plantDao.getLastPlant()
+        assertEquals(updatedPlant.wateringInterval, 4L)
     }
 }

@@ -6,7 +6,6 @@ import cz.vengron.myplants.database.Plant
 import cz.vengron.myplants.database.PlantsDatabaseDao
 import kotlinx.coroutines.*
 import java.util.concurrent.TimeUnit
-import kotlin.math.round
 
 class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
 
@@ -27,6 +26,7 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         val plant = Plant()
         plant.plantName = plantName
         plant.timeForWatering = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(timeForWatering)
+        plant.wateringInterval = timeForWatering
         plant.nameOfThePlant = nameOfThePlant
         plant.imageUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
         uiScope.launch {
@@ -35,7 +35,7 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         }
     }
 
-    private suspend fun getLastPlant(): Plant? {
+    private suspend fun getLastPlant(): Plant {
         var lastPlant = Plant()
         withContext(Dispatchers.IO) {
             lastPlant = database.getLastPlant()

@@ -37,5 +37,4 @@ class CollectionViewModel(
     fun onNavigatedToDetail() {
         _navigateToPlantDetail.value = null
     }
-
 }

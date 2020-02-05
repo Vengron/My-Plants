@@ -17,4 +17,5 @@
         <item>Spathiphyllum cochlearispathum</item>
     </string-array>
     <string name="days_of_watering">At what daily interval do you water?</string>
+    <string name="watered_button">Watered down</string>
 </resources>
