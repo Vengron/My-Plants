@@ -1,12 +1,14 @@
 package cz.vengron.myplants.schedule
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import cz.vengron.myplants.R
+import cz.vengron.myplants.database.PlantsDatabase
 import cz.vengron.myplants.databinding.ScheduleFragmentBinding
 
 /**
@@ -23,6 +25,40 @@ class ScheduleFragment : Fragment() {
         val binding: ScheduleFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.schedule_fragment, container, false
         )
+
+        val application = requireNotNull(this.activity).application
+
+        val dataSource = PlantsDatabase.getInstance(application).plantsDatabaseDao
+
+        val viewModelFactory = ScheduleViewModelFactory(dataSource, application)
+
+        val scheduleViewModel = ViewModelProvider(this, viewModelFactory)
+            .get(ScheduleViewModel::class.java)
+
+        binding.viewModel = scheduleViewModel
+
+        binding.lifecycleOwner = this
+
+        scheduleViewModel.navigateToPlantDetail.observe(this, Observer {
+            it?.let {
+                this.findNavController().navigate(
+                    ScheduleFragmentDirections.actionScheduleFragmentToPlantDetailFragment(it)
+                )
+                scheduleViewModel.onNavigatedToDetail()
+            }
+        })
+
+        val adapter = ScheduleAdapter(ScheduleListener { plantId ->
+            scheduleViewModel.onPlantClicked(plantId)
+        })
+
+        binding.wateringList.adapter = adapter
+
+        scheduleViewModel.plants.observe(this, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
 
         return binding.root
     }
