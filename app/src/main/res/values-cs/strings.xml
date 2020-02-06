@@ -11,4 +11,5 @@
     <string name="addition">Přidat rostlinu</string>
     <string name="detail">Tvoje rostlinka</string>
     <string name="watered_button">Zalito</string>
+    <string name="dark_mode">Tmavý motiv</string>
 </resources>
