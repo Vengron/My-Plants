@@ -34,7 +34,8 @@
             android:layout_marginEnd="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/medium_margin"
             android:onClick="@{() -> viewModel.onAddButtonClick()}"
-            app:srcCompat="@android:drawable/ic_input_add" />
+            app:srcCompat="@android:drawable/ic_input_add"
+            app:tint="?android:attr/textColorPrimaryInverse" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

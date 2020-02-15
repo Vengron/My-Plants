@@ -28,7 +28,9 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         plant.timeForWatering = System.currentTimeMillis() + TimeUnit.DAYS.toMillis(timeForWatering)
         plant.wateringInterval = timeForWatering
         plant.nameOfThePlant = nameOfThePlant
-        plant.imageUrl = urlsOfImages.getOrDefault(nameOfThePlant, "blankUrl")
+        val urls = listOfUrls.first { it.nameOfThePlant == nameOfThePlant }
+        plant.imageUrl = urls.urlOfImage
+        plant.wikiUrl = urls.urlOfWiki
         uiScope.launch {
             insert(plant)
             _onNavigateToDetail.value = getLastPlant()
@@ -57,26 +59,33 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         _onNavigateToDetail.value = null
     }
 
-    private val urlsOfImages = mapOf(
-        Pair(
+    data class Urls(val nameOfThePlant: String, val urlOfImage: String, val urlOfWiki: String)
+
+    private val listOfUrls = listOf(
+        Urls(
             "Plectranthus amboinicus",
-            "https://upload.wikimedia.org/wikipedia/commons/1/1b/Leaf_-pani_koorkka.JPG"
+            "https://upload.wikimedia.org/wikipedia/commons/1/1b/Leaf_-pani_koorkka.JPG",
+            "https://en.wikipedia.org/wiki/Plectranthus_amboinicus"
         ),
-        Pair(
+        Urls(
             "Plectranthus scutellarioides",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Starr_070830-8251_Solenostemon_scutellarioides.jpg/675px-Starr_070830-8251_Solenostemon_scutellarioides.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Starr_070830-8251_Solenostemon_scutellarioides.jpg/675px-Starr_070830-8251_Solenostemon_scutellarioides.jpg",
+            "https://en.wikipedia.org/wiki/Plectranthus_scutellarioides"
         ),
-        Pair(
+        Urls(
             "Aloe vera",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alo%C3%AB-vera-habitus.jpg/600px-Alo%C3%AB-vera-habitus.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Alo%C3%AB-vera-habitus.jpg/600px-Alo%C3%AB-vera-habitus.jpg",
+            "https://en.wikipedia.org/wiki/Aloe_vera"
         ),
-        Pair(
+        Urls(
             "Piper nigrum",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Piper_longum_plant.jpg/800px-Piper_longum_plant.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Piper_longum_plant.jpg/800px-Piper_longum_plant.jpg",
+            "https://en.wikipedia.org/wiki/Black_pepper"
         ),
-        Pair(
+        Urls(
             "Spathiphyllum cochlearispathum",
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Spathiphyllum_cochlearispathum_RTBG.jpg/800px-Spathiphyllum_cochlearispathum_RTBG.jpg"
+            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Spathiphyllum_cochlearispathum_RTBG.jpg/800px-Spathiphyllum_cochlearispathum_RTBG.jpg",
+            "https://en.wikipedia.org/wiki/Spathiphyllum_cochlearispathum"
         )
     )
 }
