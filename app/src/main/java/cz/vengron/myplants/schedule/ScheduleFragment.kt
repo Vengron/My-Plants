@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cz.vengron.myplants.R
@@ -21,7 +20,7 @@ class ScheduleFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: ScheduleFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.schedule_fragment, container, false
         )
@@ -39,7 +38,7 @@ class ScheduleFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        scheduleViewModel.navigateToPlantDetail.observe(this, Observer {
+        scheduleViewModel.navigateToPlantDetail.observe(viewLifecycleOwner, {
             it?.let {
                 this.findNavController().navigate(
                     ScheduleFragmentDirections.actionScheduleFragmentToPlantDetailFragment(it)
@@ -54,7 +53,7 @@ class ScheduleFragment : Fragment() {
 
         binding.wateringList.adapter = adapter
 
-        scheduleViewModel.plants.observe(this, Observer {
+        scheduleViewModel.plants.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.submitList(it)
             }

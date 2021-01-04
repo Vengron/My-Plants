@@ -38,7 +38,7 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
     }
 
     private suspend fun getLastPlant(): Plant {
-        var lastPlant = Plant()
+        var lastPlant: Plant
         withContext(Dispatchers.IO) {
             lastPlant = database.getLastPlant()
         }
@@ -51,8 +51,8 @@ class PlantAdditionViewModel(val database: PlantsDatabaseDao) : ViewModel() {
         }
     }
 
-    private val _onNavigateToDetail = MutableLiveData<Plant>()
-    val onNavigateToDetail: MutableLiveData<Plant>
+    private val _onNavigateToDetail = MutableLiveData<Plant?>()
+    val onNavigateToDetail: MutableLiveData<Plant?>
         get() = _onNavigateToDetail
 
     fun onNavigateToDetail() {

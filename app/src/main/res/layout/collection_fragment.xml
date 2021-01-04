@@ -33,6 +33,7 @@
             android:layout_gravity="end|bottom"
             android:layout_marginEnd="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/medium_margin"
+            android:contentDescription="@string/addition"
             android:onClick="@{() -> viewModel.onAddButtonClick()}"
             app:srcCompat="@android:drawable/ic_input_add"
             app:tint="?android:attr/textColorPrimaryInverse" />

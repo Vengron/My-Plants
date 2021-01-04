@@ -25,9 +25,9 @@ class CollectionViewModel(
 
     val plants = database.getAllPlants()
 
-    private val _navigateToPlantDetail = MutableLiveData<Long>()
+    private val _navigateToPlantDetail = MutableLiveData<Long?>()
 
-    val navigateToPlantDetail: LiveData<Long>
+    val navigateToPlantDetail: MutableLiveData<Long?>
         get() = _navigateToPlantDetail
 
     fun onPlantClicked(plantId: Long) {

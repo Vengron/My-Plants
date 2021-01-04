@@ -2,7 +2,6 @@ package cz.vengron.myplants.schedule
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.vengron.myplants.database.PlantsDatabaseDao
 
@@ -13,9 +12,9 @@ class ScheduleViewModel(
 
     var plants = database.getAllPlants()
 
-    private val _navigateToPlantDetail = MutableLiveData<Long>()
+    private val _navigateToPlantDetail = MutableLiveData<Long?>()
 
-    val navigateToPlantDetail: LiveData<Long>
+    val navigateToPlantDetail: MutableLiveData<Long?>
         get() = _navigateToPlantDetail
 
     fun onPlantClicked(plantId: Long) {

@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -21,7 +20,7 @@ class PlantAdditionFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: PlantAdditionFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.plant_addition_fragment, container, false
@@ -47,7 +46,7 @@ class PlantAdditionFragment : Fragment() {
             )
         }
 
-        additionViewModel.onNavigateToDetail.observe(this, Observer { plant ->
+        additionViewModel.onNavigateToDetail.observe(viewLifecycleOwner, { plant ->
             plant?.let {
                 this.findNavController().navigate(
                     PlantAdditionFragmentDirections
@@ -59,7 +58,7 @@ class PlantAdditionFragment : Fragment() {
         })
 
         ArrayAdapter.createFromResource(
-            this.context!!,
+            this.requireContext(),
             R.array.names_of_plants,
             android.R.layout.simple_spinner_item
         ).also { adapter ->

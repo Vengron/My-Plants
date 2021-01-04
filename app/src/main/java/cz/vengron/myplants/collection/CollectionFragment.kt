@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import cz.vengron.myplants.R
@@ -27,7 +26,7 @@ class CollectionFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding: CollectionFragmentBinding = DataBindingUtil.inflate(
             inflater, R.layout.collection_fragment, container, false
         )
@@ -45,14 +44,14 @@ class CollectionFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        collectionViewModel.navigateToPlantAddition.observe(this, Observer {
+        collectionViewModel.navigateToPlantAddition.observe(viewLifecycleOwner, {
             if (it == true) {
                 this.findNavController().navigate(R.id.plantAdditionFragment)
                 collectionViewModel.onNavigatedToAddition()
             }
         })
 
-        collectionViewModel.navigateToPlantDetail.observe(this, Observer {
+        collectionViewModel.navigateToPlantDetail.observe(viewLifecycleOwner, {
             it?.let {
                 this.findNavController().navigate(
                     CollectionFragmentDirections.actionCollectionFragmentToPlantDetailFragment(it)
@@ -69,7 +68,7 @@ class CollectionFragment : Fragment() {
 
         val scope = CoroutineScope(Dispatchers.Default)
 
-        collectionViewModel.plants.observe(this, Observer {
+        collectionViewModel.plants.observe(viewLifecycleOwner, {
             scope.launch {
                 withContext(Dispatchers.Main) {
                     it?.let {

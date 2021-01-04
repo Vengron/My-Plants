@@ -1,6 +1,5 @@
 package cz.vengron.myplants
 
-import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
@@ -12,7 +11,6 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import cz.vengron.myplants.database.Plant
-import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 
