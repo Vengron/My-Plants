@@ -2,29 +2,16 @@
 
 buildscript {
 
-    ext {
-        version_core = '1.2.0'
-        version_coroutine = "1.3.0"
-        version_navigation = '2.2.1'
-        version_constraint_layout = "2.0.0-beta4"
-        version_gradle = '3.6.0'
-        version_kotlin = "1.3.61"
-        version_lifecycle_extensions = "2.1.0"
-        version_room = '2.2.4'
-        version_appcompat = "1.1.0"
-        version_fragment = '1.2.2'
-        version_glide = '4.11.0'
-    }
-
     repositories {
         google()
         jcenter()
         
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:${version_gradle}"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
+        classpath "com.android.tools.build:gradle:4.1.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.21"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:2.3.2"
+        classpath 'com.google.gms:google-services:4.3.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
