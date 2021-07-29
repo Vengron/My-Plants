@@ -8,7 +8,9 @@
     <string name="plant_image">Image of your plant</string>
     <string name="plant_name">How do you call your plantie?</string>
     <string name="done">Done</string>
-
+    <string name="days_of_watering">At what daily interval do you water?</string>
+    <string name="watered_button">Watered down</string>
+    <string name="dark_mode">Dark Mode</string>
     <string-array name="names_of_plants">
         <item>Plectranthus amboinicus</item>
         <item>Plectranthus scutellarioides</item>
@@ -16,7 +18,4 @@
         <item>Piper nigrum</item>
         <item>Spathiphyllum cochlearispathum</item>
     </string-array>
-    <string name="days_of_watering">At what daily interval do you water?</string>
-    <string name="watered_button">Watered down</string>
-    <string name="dark_mode">Dark Mode</string>
 </resources>
