@@ -22,7 +22,7 @@ class ScheduleAdapter(private val clickListener: ScheduleListener) : ListAdapter
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: ListItemWateringBinding) :
+    class ViewHolder private constructor(private val binding: ListItemWateringBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(clickListener: ScheduleListener, item: Plant) {

@@ -34,7 +34,7 @@ class PlantDetailFragment : Fragment() {
 
         val detailViewModel = ViewModelProvider(
             this, viewModelProvider
-        ).get(PlantDetailViewModel::class.java)
+        )[PlantDetailViewModel::class.java]
 
         binding.viewModel = detailViewModel
 

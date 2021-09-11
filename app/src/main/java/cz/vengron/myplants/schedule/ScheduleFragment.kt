@@ -31,8 +31,7 @@ class ScheduleFragment : Fragment() {
 
         val viewModelFactory = ScheduleViewModelFactory(dataSource, application)
 
-        val scheduleViewModel = ViewModelProvider(this, viewModelFactory)
-            .get(ScheduleViewModel::class.java)
+        val scheduleViewModel = ViewModelProvider(this, viewModelFactory)[ScheduleViewModel::class.java]
 
         binding.viewModel = scheduleViewModel
 

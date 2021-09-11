@@ -33,7 +33,7 @@ class PlantAdditionFragment : Fragment() {
 
         val additionViewModel = ViewModelProvider(
             this, viewModelProvider
-        ).get(PlantAdditionViewModel::class.java)
+        )[PlantAdditionViewModel::class.java]
 
         binding.viewModel = additionViewModel
         binding.lifecycleOwner = this

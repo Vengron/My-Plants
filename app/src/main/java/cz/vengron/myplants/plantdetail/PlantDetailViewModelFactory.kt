@@ -9,7 +9,7 @@ class PlantDetailViewModelFactory(
     private val dataSource: PlantsDatabaseDao
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PlantDetailViewModel::class.java)) {
             return PlantDetailViewModel(plantKey, dataSource) as T
         }
